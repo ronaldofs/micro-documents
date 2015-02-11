@@ -1,0 +1,12 @@
+[submodule "search-api"]
+	path = search-api
+	url = git@github.com:ronaldofs/micro-documents-search.git
+[submodule "library-api"]
+	path = library-api
+	url = git@github.com:ronaldofs/micro-documents-library-api.git
+[submodule "web-client"]
+	path = web-client
+	url = git@github.com:ronaldofs/micro-documents-webclient.git
+[submodule "admin-api"]
+	path = admin-api
+	url = git@github.com:ronaldofs/micro-documents-admin.git

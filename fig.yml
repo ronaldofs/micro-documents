@@ -1,0 +1,62 @@
+admin:
+  build: ./documents-admin
+  ports:
+    - 3001
+  links:
+    - admindb
+    - rabbitmq
+  environment:
+    PORT: 3001
+    DB_URL: ''
+
+client:
+  build: ./documents-client
+  ports:
+    - 3002
+  links:
+    - library
+  environment:
+    PORT: 3002
+    API_URL: ''
+
+library:
+  build: ./documents-library
+  ports:
+    - 3003
+  links:
+    - librarydb
+    - rabbitmq
+  environment:
+    PORT: 3003
+    DB_URL: ''
+    BUS_URL: ''
+
+search:
+  build: ./documents-search
+  ports:
+    - 3004
+  links:
+    - es
+  environment:
+    PORT: 3004
+
+admindb:
+  image: dockerfile/mongodb
+  ports:
+    - 27017
+
+librarydb:
+  image: dockerfile/redis
+  ports:
+    - 6379
+
+rabbitmq:
+  image: dockerfile/rabbitmq
+  ports:
+    - 5672
+
+es:
+  image: dockerfile/elasticsearch
+  ports:
+    - "9200:9200"
+    - "9300:9300"
